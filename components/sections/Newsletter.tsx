@@ -36,14 +36,18 @@ export default function Newsletter() {
   }
 
   return (
-    <section ref={ref} id="evening-list" className="desk grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-2">
-      <SectionHeading
+    <section ref={ref} id="evening-list" className="newsletter-stage border-b border-[var(--rule)] py-20 sm:py-28">
+      <div className="desk grid items-center gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+       <div>
+        <SectionHeading
         numeral="09"
         kicker="Evening list"
         title="One note after the last edition."
         aside="The envelope opens when you arrive. The address stays in this browser and nowhere else."
-      />
-      <div className="envelope justify-self-center">
+        />
+        <p className="mt-8 max-w-md border-l border-ember pl-4 font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-ink-soft">One concise briefing · no noise · filed at dusk</p>
+       </div>
+      <div className="envelope mx-auto mt-10 lg:mt-16">
         <motion.div
           className="envelope-flap"
           initial={false}
@@ -78,6 +82,7 @@ export default function Newsletter() {
           </p>
         </motion.form>
         <div className="envelope-pocket" />
+      </div>
       </div>
     </section>
   );

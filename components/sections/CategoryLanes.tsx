@@ -25,7 +25,7 @@ export default function CategoryLanes({ articles }: { articles: Article[] }) {
       gsap.registerPlugin(ScrollTrigger);
       const ctx = gsap.context(() => {
         const columns = Array.from(root.querySelectorAll<HTMLElement>("[data-lane]"));
-        const shifts = [-18, 16, -12];
+        const shifts = [-8, 10, -6];
         columns.forEach((column, index) => {
           gsap.to(column, {
             yPercent: shifts[index] ?? 0,
@@ -61,17 +61,17 @@ export default function CategoryLanes({ articles }: { articles: Article[] }) {
           ))}
         </div>
       </div>
-      <div className="lane-grid mt-8 grid gap-4 px-4 md:grid-cols-3 md:px-10">
+      <div className="lane-grid desk mt-10 grid gap-5 pb-12 pt-4 md:grid-cols-3 md:gap-6">
         {lanes.map((lane, index) => (
-          <div key={index} data-lane className="flex flex-col gap-4">
+          <div key={index} data-lane className={`flex flex-col gap-5 ${index === 0 ? "lg:-rotate-[1.5deg]" : index === 1 ? "lg:translate-y-16 lg:rotate-[1deg]" : "lg:-rotate-[1deg]"}`}>
             {lane.map((article) => (
-              <Link key={article.id} href={`/article/${article.slug}`} className="overflow-hidden rounded-[1.6rem] border border-[var(--rule)] bg-paper">
+              <Link key={article.id} href={`/article/${article.slug}`} className="group overflow-hidden rounded-[1.6rem] border border-[var(--rule)] bg-paper shadow-[var(--shadow)]">
                 <SafeImage src={article.image?.src} alt={article.image?.alt || ""} category={article.categoryLabel} ratio="aspect-[16/10]" sizes="(max-width: 768px) 100vw, 30vw" />
                 <span className="block p-4">
                   <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ember">
                     {article.categoryNumeral} {article.categoryLabel}
                   </span>
-                  <span className="display mt-2 block text-2xl">{article.title}</span>
+                  <span className="display mt-2 block text-[clamp(1.35rem,2vw,1.85rem)] leading-[1.02]">{article.title}</span>
                 </span>
               </Link>
             ))}

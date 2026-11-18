@@ -75,7 +75,7 @@ export default function PhotoCube({ articles }: { articles: Article[] }) {
           <EmptyState kicker="07" title="No plates in the cube." body="The photo desk has not filed a story." />
         </div>
       ) : (
-        <div className="cube-scene mt-8 grid place-items-center">
+        <div className="cube-scene mt-10 grid place-items-center overflow-hidden px-4 pb-10 pt-14 sm:mt-12 sm:pt-20">
           <div data-cube className="cube">
             {articles.slice(0, 4).map((article) => (
               <Link key={article.id} href={`/article/${article.slug}`} data-face className="cube-face border border-[var(--rule)] bg-paper">

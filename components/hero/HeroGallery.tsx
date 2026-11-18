@@ -55,37 +55,30 @@ export default function HeroGallery({ articles }: { articles: Article[] }) {
       if (dead) return;
       gsap.registerPlugin(ScrollTrigger);
 
-      const step = 360 / total;
-      const travel = (total - 1) * step;
-
-      const layout = () => {
-        const width = cards[0]?.offsetWidth || 320;
-        const radius = Math.max(260, width * 1.15);
-        cards.forEach((card, index) => {
-          card.style.transform = `translate(-50%, -50%) rotateY(${index * step}deg) translateZ(${radius}px)`;
-        });
-      };
-
       const apply = (progress: number) => {
-        const rotation = progress * travel;
-        rotor.style.transform = `rotateX(8deg) rotateY(${-rotation}deg)`;
+        const active = progress * (total - 1);
         cards.forEach((card, index) => {
-          let rel = index * step - rotation;
-          rel = ((rel + 180) % 360 + 360) % 360 - 180;
+          const rel = index - active;
           const abs = Math.abs(rel);
-          card.style.opacity = abs > 112 ? "0" : String(Math.max(0, 1 - Math.max(0, abs - 34) / 92));
-          if (abs > 64) card.setAttribute("inert", "");
+          const x = rel * 54;
+          const z = -Math.min(abs * 115, 520);
+          const rotate = Math.max(-58, Math.min(58, rel * -16));
+          const scale = Math.max(0.72, 1 - abs * 0.09);
+          card.style.transform = `translate(-50%, -50%) translateX(${x}%) translateZ(${z}px) rotateY(${rotate}deg) scale(${scale})`;
+          card.style.opacity = abs > 4.2 ? "0" : String(Math.max(0.12, 1 - abs * 0.18));
+          card.style.zIndex = String(100 - Math.round(abs * 10));
+          if (abs > 1.4) card.setAttribute("inert", "");
           else card.removeAttribute("inert");
         });
-        paint(Math.round(rotation / step), progress);
+        paint(Math.round(active), progress);
       };
 
       const ctx = gsap.context(() => {
-        layout();
+        apply(0);
         ScrollTrigger.create({
           trigger: section,
           start: "top top",
-          end: "+=250%",
+          end: "+=350%",
           pin: true,
           anticipatePin: 1,
           onUpdate: (self) => apply(self.progress),
@@ -94,10 +87,7 @@ export default function HeroGallery({ articles }: { articles: Article[] }) {
         scene.dataset.ready = "true";
       }, section);
 
-      const onResize = () => layout();
-      window.addEventListener("resize", onResize);
       revert = () => {
-        window.removeEventListener("resize", onResize);
         ctx.revert();
       };
     })();

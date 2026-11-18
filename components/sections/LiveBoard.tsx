@@ -70,22 +70,24 @@ export default function LiveBoard() {
   }, []);
 
   return (
-    <section className="bg-board py-16 text-board-ink sm:py-20">
-      <div className="desk">
+    <section className="live-board relative overflow-hidden bg-board py-16 text-board-ink sm:py-24">
+      <div className="live-orbit" aria-hidden="true" />
+      <div className="desk relative">
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-saffron">08 — The board</p>
-        <h2 className="section-title mt-3 max-w-[12ch] text-[clamp(2.6rem,6vw,5rem)] text-board-ink">
+        <h2 className="section-title mt-4 max-w-[10ch] text-[clamp(3.2rem,7vw,6.8rem)] text-board-ink">
           {"Live from the desk.".split(" ").map((word, index) => (
             <span key={word} className="word-reveal" style={{ animationDelay: `${index * 70}ms` }}>
               {word}{" "}
             </span>
           ))}
         </h2>
-        <div className="mt-8">
+        <div className="mt-10 rounded-[2rem] border border-white/15 bg-white/[0.035] p-5 shadow-2xl backdrop-blur-sm sm:p-8">
+          <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.18em] text-saffron">Now crossing the wire</p>
           <FlapLine key={flapLines[line]} text={flapLines[line]} />
         </div>
-        <dl className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-4">
+        <dl className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
           {deskStats.map((stat) => (
-            <div key={stat.label} className="border-t border-white/20 pt-3">
+            <div key={stat.label} className="rounded-[1.4rem] border border-white/15 bg-white/[0.035] p-4 sm:p-5">
               <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-saffron">{stat.label}</dt>
               <dd className="display mt-2 text-5xl">
                 <CountUp value={stat.value} />
