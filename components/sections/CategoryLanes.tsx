@@ -50,7 +50,7 @@ export default function CategoryLanes({ articles }: { articles: Article[] }) {
   const lanes = [0, 1, 2].map((lane) => articles.filter((_, index) => index % 3 === lane).slice(0, 4));
 
   return (
-    <section ref={rootRef} className="overflow-hidden border-y border-[var(--rule)] py-16 sm:py-20">
+    <section ref={rootRef} className="overflow-x-clip border-y border-[var(--rule)] py-16 sm:py-20">
       <div className="desk">
         <SectionHeading numeral="06" kicker="Sections" title="Eight desks, three lanes." aside="The columns drift against each other. Pick a desk, or stay for the slant." />
         <div className="mt-8 flex flex-wrap gap-3">
@@ -61,7 +61,7 @@ export default function CategoryLanes({ articles }: { articles: Article[] }) {
           ))}
         </div>
       </div>
-      <div className="lane-grid desk mt-10 grid gap-5 pb-12 pt-4 md:grid-cols-3 md:gap-6">
+      <div className="lane-grid desk mt-10 grid gap-5 pb-24 pt-4 md:grid-cols-3 md:gap-6 lg:pb-40">
         {lanes.map((lane, index) => (
           <div key={index} data-lane className={`flex flex-col gap-5 ${index === 0 ? "lg:-rotate-[1.5deg]" : index === 1 ? "lg:translate-y-16 lg:rotate-[1deg]" : "lg:-rotate-[1deg]"}`}>
             {lane.map((article) => (

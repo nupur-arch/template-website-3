@@ -51,14 +51,19 @@ export function SafeImage({
           onError={() => setFailed(true)}
         />
       ) : (
-        <div className="paper-fiber absolute inset-0 flex flex-col justify-between p-4" aria-hidden="true">
-          <div className="flex items-start justify-between">
-            <Mark className="h-8 w-8" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.16em]">No plate</span>
+        <div className="fallback-plate absolute inset-0 flex flex-col justify-between overflow-hidden p-4 sm:p-5" aria-hidden="true">
+          <span className="fallback-orbit" />
+          <span className="fallback-letter">{(category || "E").slice(0, 1)}</span>
+          <div className="relative flex items-start justify-between">
+            <Mark className="h-9 w-9" />
+            <span className="rounded-full border border-current/20 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.18em]">Archive plate</span>
           </div>
-          <div>
-            <div className="mb-3 h-px w-14 bg-current opacity-40" />
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em]">{category || "Emberline"}</p>
+          <div className="relative grid grid-cols-[auto_1fr] items-end gap-3">
+            <span className="h-8 w-1 bg-ember" />
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ember">Emberline visual desk</p>
+              <p className="display mt-1 text-[clamp(1.35rem,3vw,2.4rem)] leading-none">{category || "Filed without a photograph"}</p>
+            </div>
           </div>
         </div>
       )}

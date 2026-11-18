@@ -161,6 +161,35 @@ img {
     repeating-linear-gradient(90deg, transparent, transparent 7px, rgba(255, 91, 46, 0.05) 8px);
 }
 
+.fallback-plate {
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--ember) 12%, transparent), transparent 46%),
+    repeating-linear-gradient(90deg, transparent 0 23px, var(--fiber) 24px),
+    repeating-linear-gradient(0deg, transparent 0 23px, var(--fiber) 24px),
+    var(--paper-deep);
+}
+
+.fallback-orbit {
+  position: absolute;
+  right: -12%;
+  top: -35%;
+  width: 72%;
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--ember) 46%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2.5rem color-mix(in srgb, var(--saffron) 7%, transparent), 0 0 0 5rem color-mix(in srgb, var(--ember) 5%, transparent);
+}
+
+.fallback-letter {
+  position: absolute;
+  right: 7%;
+  bottom: -18%;
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 24vw, 17rem);
+  line-height: 1;
+  color: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+
 .dark .paper-fiber {
   background-image:
     linear-gradient(180deg, rgba(245, 237, 224, 0.05), transparent 42%),
@@ -273,7 +302,8 @@ mark {
 
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
   .hero-section {
-    height: 100svh;
+    height: calc(100svh - 6rem);
+    min-height: 620px;
     overflow: hidden;
   }
 
@@ -297,10 +327,11 @@ mark {
   .hero-card {
     position: absolute;
     left: 50%;
-    top: 46%;
-    width: min(28vw, 360px);
+    top: 50%;
+    width: min(28vw, 340px, calc((100svh - 10rem) * 0.68));
     flex: none;
     will-change: transform, opacity;
+    pointer-events: auto;
   }
 
   .hero-scene:not([data-ready]) .hero-card:nth-child(n + 2) {
@@ -394,7 +425,7 @@ mark {
 .cube {
   position: relative;
   width: min(78vw, 520px);
-  height: min(70vw, 460px);
+  height: min(66vw, 430px);
   transform-style: preserve-3d;
 }
 
@@ -561,6 +592,23 @@ mark {
   .flip-back {
     display: none;
   }
+}
+
+@media (max-width: 767px) {
+  .site-header { padding-inline: 0.5rem; padding-top: 0.5rem; }
+  .site-header kbd { display: none; }
+  .hero-section { padding-top: 0.5rem; }
+  .hero-scene { margin-inline: -1rem; padding-inline: 1rem; }
+  .hero-card { flex-basis: min(86vw, 340px); }
+  .section-title { overflow-wrap: anywhere; }
+  .envelope { transform: scale(0.9); transform-origin: top center; margin-bottom: -1.5rem; }
+  .flap-cell { min-width: 0.62em; }
+}
+
+@media (max-width: 374px) {
+  body { font-size: 15px; }
+  .desk { padding-inline: 0.75rem; }
+  .envelope { transform: scale(0.82); margin-bottom: -3rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

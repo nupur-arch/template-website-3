@@ -3,6 +3,7 @@
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { FormEvent, useRef, useState } from "react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { MailIcon } from "@/components/ui/Icons";
 
 const KEY = "emberline.list";
 
@@ -74,8 +75,8 @@ export default function Newsletter() {
             placeholder="you@desk.test"
             className="mt-2 w-full border-b border-[var(--rule)] bg-transparent py-2 outline-none"
           />
-          <button type="submit" className="mt-4 rounded-full bg-ember px-4 py-2 text-sm text-white">
-            {filed ? "Filed" : "File me"}
+          <button type="submit" className="mt-4 inline-flex items-center gap-2 rounded-full bg-ember px-4 py-2 text-sm text-white">
+            <MailIcon />{filed ? "Filed" : "File me"}
           </button>
           <p className="mt-3 min-h-10 text-sm text-ink-soft" role="status">
             {message}

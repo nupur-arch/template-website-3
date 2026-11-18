@@ -68,21 +68,23 @@ export default function PhotoCube({ articles }: { articles: Article[] }) {
   }, [articles.length]);
 
   return (
-    <section ref={sectionRef} className="photo-stage desk py-16 lg:flex lg:h-[100svh] lg:flex-col lg:justify-center">
-      <SectionHeading numeral="07" kicker="Photo story" title="Four faces, one turn." aside="Scroll the prism. Each face is a story with a plate." />
+    <section ref={sectionRef} className="photo-stage desk grid gap-8 py-14 lg:h-[100svh] lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:py-8">
+      <div className="relative z-10">
+        <SectionHeading numeral="07" kicker="Photo story" title="Four faces, one turn." aside="Scroll the prism. Each face is a story with a plate." />
+      </div>
       {articles.length === 0 ? (
         <div className="mt-8">
           <EmptyState kicker="07" title="No plates in the cube." body="The photo desk has not filed a story." />
         </div>
       ) : (
-        <div className="cube-scene mt-10 grid place-items-center overflow-hidden px-4 pb-10 pt-14 sm:mt-12 sm:pt-20">
+        <div className="cube-scene grid min-w-0 place-items-center overflow-hidden px-4 py-10 lg:h-[calc(100svh-8rem)] lg:py-14">
           <div data-cube className="cube">
             {articles.slice(0, 4).map((article) => (
               <Link key={article.id} href={`/article/${article.slug}`} data-face className="cube-face border border-[var(--rule)] bg-paper">
-                <SafeImage src={article.image?.src} alt={article.image?.alt || ""} category={article.categoryLabel} ratio="h-[46%] w-full" className="rounded-none" sizes="(max-width: 1024px) 100vw, 520px" />
+                <SafeImage src={article.image?.src} alt={article.image?.alt || ""} category={article.categoryLabel} ratio="h-[52%] w-full" className="rounded-none" sizes="(max-width: 1024px) 100vw, 520px" />
                 <span className="block p-5">
                   <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ember">{article.categoryLabel}</span>
-                  <span className="display mt-2 block text-3xl">{article.title}</span>
+                  <span className="display mt-2 block text-[clamp(1.55rem,2.5vw,2.2rem)] leading-[0.98]">{article.title}</span>
                   <span className="mt-4 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em]">
                     Open <Arrow />
                   </span>

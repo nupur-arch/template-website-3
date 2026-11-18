@@ -73,7 +73,7 @@ export const mockApiArticles: ApiArticle[] = [
     section: world,
     byline: "Mira Adelman",
     published_at: "2026-11-18T11:05:00.000Z",
-    media: plate("photo-1494412574643-ff11af0c31dd", "Container cranes along a working harbour"),
+    media: plate("photo-1569263979104-865ab7cd8d13", "Working boats moving through a harbour at first light"),
     body: `The halt lasted nine days. Ferries stayed at the quay, the night market learned a thinner kind of quiet, and the pilots drank coffee they did not need.
 
 **What changed on the tenth morning** was not a speech. A clerk pinned a timetable to the harbour office door with a brass tack that had been waiting in a drawer.

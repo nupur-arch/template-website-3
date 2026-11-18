@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { categories } from "@/content/site.config";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { CloseIcon, MenuIcon } from "@/components/ui/Icons";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -31,7 +32,7 @@ export function MobileNav() {
         aria-controls="section-drawer"
         onClick={() => setOpen(true)}
       >
-        Sections
+        <span className="inline-flex items-center gap-2"><MenuIcon /><span className="hidden sm:inline">Sections</span></span>
       </button>
       {open ? (
         <div className="fixed inset-0 z-[75] bg-ink/50" role="presentation">
@@ -45,7 +46,7 @@ export function MobileNav() {
             <div className="mb-6 flex items-center justify-between">
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ember">08 desks</p>
               <button type="button" className="font-mono text-[11px] uppercase tracking-[0.16em]" onClick={() => setOpen(false)}>
-                Close
+                <span className="inline-flex items-center gap-2"><span>Close</span><CloseIcon /></span>
               </button>
             </div>
             {categories.map((category) => (

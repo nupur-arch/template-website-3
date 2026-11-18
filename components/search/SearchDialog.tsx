@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { SafeImage } from "@/components/ui/SafeImage";
+import { CloseIcon, SearchIcon } from "@/components/ui/Icons";
 import { formatClock, formatRelative } from "@/lib/format";
 import type { SearchGroup, SearchHit, SearchResponse } from "@/lib/types";
 
@@ -157,7 +158,8 @@ export function SearchDialog() {
         onClick={() => setOpen(true)}
         className="flex items-center gap-3 rounded-full border border-[var(--rule)] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em]"
       >
-        <span>Search</span>
+        <SearchIcon />
+        <span className="hidden lg:inline">Search</span>
         <kbd className="hidden sm:inline">Ctrl K</kbd>
       </button>
       {open ? (
@@ -186,7 +188,7 @@ export function SearchDialog() {
                 className="min-w-0 flex-1 bg-transparent text-lg outline-none placeholder:text-ink-soft"
               />
               <button type="button" onClick={close} className="font-mono text-[10px] uppercase tracking-[0.16em]">
-                Esc
+                <span className="sr-only">Close search</span><CloseIcon />
               </button>
             </div>
             <div id={listId} role="listbox" className="min-h-0 flex-1 overflow-y-auto p-3" data-lenis-prevent>
